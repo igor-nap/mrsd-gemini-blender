@@ -1,17 +1,19 @@
 import jpc
 import time
+import bge
 from bge import logic
 import mathutils
-
+import os
 class Pointers:
 	arrow = 'arrowFlat'
 	circle = 'circleArrow'
 	cross = 'crossHair'
 
 step_num = -1
-
+bge.render.setBackgroundColor([0,0,0,0])
 #Parse the pre-compiled text file to receive data
-stepFile = open('/home/bhala/DevTools/mrsd-gemini-blender/BlenderPointers/gemini_steps1.txt')
+stepFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'gemini_steps1.txt')
+stepFile = open(stepFilePath)
 stepFileLine = list(stepFile)
 
 stepNo =[0 for x in range(len(stepFileLine))]
@@ -35,7 +37,8 @@ for lineNo,line in enumerate(stepFileLine):
 	camAngles[lineNo] = [float(thisLine[12]),float(thisLine[13]),float(thisLine[14])]
 
 #Get all the pointers - Load it from the blender File
-logic.LibLoad("/home/bhala/DevTools/mrsd-gemini-blender/BlenderPointers/animateObjects.blend","Scene")
+blendFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'animateObjects.blend')
+logic.LibLoad(blendFilePath,"Scene")
 
 #Get the initial Scene
 scene = logic.getCurrentScene()	
@@ -134,7 +137,7 @@ def renderStep():
 		elif curr_state == 1: 				# Step requested
 		
 			step_num = s.req_step_n()
-			step_num[0] = 3 #Delete this[]
+			step_num[0] = 5 #Delete this[]
 			s.update_state(2)
 		
 			print ("Rendering...")
