@@ -4,6 +4,7 @@ import bge
 from bge import logic
 import mathutils
 import os
+
 class Pointers:
 	arrow = 'arrowFlat'
 	circle = 'circleArrow'
@@ -31,7 +32,6 @@ for lineNo,line in enumerate(stepFileLine):
 	stepNo[lineNo] = int(thisLine[0])
 	stlFileIndex[lineNo] = int(thisLine[1])
 	animateIndex[lineNo] = int(thisLine[2])
-	objectPos[lineNo] = [float(thisLine[3]),float(thisLine[4]),float(thisLine[5])]
 	objectAngles[lineNo] = [float(thisLine[6]),float(thisLine[7]),float(thisLine[8])]
 	camPos[lineNo] = [float(thisLine[9]),float(thisLine[10]),float(thisLine[11])]
 	camAngles[lineNo] = [float(thisLine[12]),float(thisLine[13]),float(thisLine[14])]
@@ -130,14 +130,13 @@ def renderStep():
 		#Act based on State
 		if curr_state == 0:					# Server initialized
 			print ("State is initialized. Standing by...")
-			objList[3].visible = False
-			objList[4].visible = False
-			objList[5].visible = False
+			# objList[3].visible = False
+			# objList[4].visible = False
+			# objList[5].visible = False
 
 		elif curr_state == 1: 				# Step requested
 		
 			step_num = s.req_step_n()
-			step_num[0] = 5 #Delete this[]
 			s.update_state(2)
 		
 			print ("Rendering...")
@@ -148,15 +147,15 @@ def renderStep():
 			s.update_state(3)
 		
 		elif curr_state == 2:				# Rendering...
-			objList[3].visible = False
-			objList[4].visible = False
-			objList[5].visible = False
+			# objList[3].visible = False
+			# objList[4].visible = False
+			# objList[5].visible = False
 			print ("[Error] gem_blender_json: Why am I here?")
 		
 		elif curr_state == 3:				# Render complete, stand by
-			objList[3].visible = False
-			objList[4].visible = False
-			objList[5].visible = False
+			# objList[3].visible = False
+			# objList[4].visible = False
+			# objList[5].visible = False
 			print ("Standing by...")
 	
 
