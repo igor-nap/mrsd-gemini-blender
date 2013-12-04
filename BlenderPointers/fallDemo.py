@@ -13,7 +13,7 @@ class Pointers:
 step_num = -1
 bge.render.setBackgroundColor([0,0,0,0])
 #Parse the pre-compiled text file to receive data
-stepFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'gemini_steps1.txt')
+stepFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'gemini_steps2-3.txt')
 stepFile = open(stepFilePath)
 stepFileLine = list(stepFile)
 
@@ -76,11 +76,11 @@ def renderStep():
 		scene = logic.getCurrentScene()
 		cube = scene.objects[0]
 
-		pointerIdx = animateIndex[step_num[0]]
+		pointerIdx = animateIndex[step_num[0]-1]
 
-		if pointerIdx == 0:
+		if pointerIdx == 1:
 			pointer = Pointers.arrow
-		elif pointerIdx == 1:
+		elif pointerIdx == 2:
 			pointer = Pointers.circle
 		else:
 			pointer = Pointers.cross
